@@ -1,0 +1,13 @@
+__pycache__
+venv/
+.vscode/
+
+.env
+.dockerignore
+.gitignore
+
+Makefile
+Dockerfile
+docker-compose*
+README.md
+LICENSE
