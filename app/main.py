@@ -1,14 +1,14 @@
 import sqlalchemy
-import pandas as pd
 from sqlalchemy.orm import sessionmaker
 import requests
 import json
-
-# from datetime import datetime, time
+import pandas as pd
 import datetime
 import sqlite3
 from dotenv import load_dotenv
 import os
+
+from utils import check_if_valid_data
 
 load_dotenv(".env")
 
@@ -20,12 +20,12 @@ if __name__ == "__main__":
     }
 
     today = datetime.datetime.now()
-    starting = today - datetime.timedelta(days=60)
-    starting_unix_timestamp = int(starting.timestamp()) * 1000
+    yesterday = today - datetime.timedelta(days=1)
+    yesterday_unix_timestamp = int(yesterday.timestamp()) * 1000
 
     r = requests.get(
         url="https://api.spotify.com/v1/me/player/recently-played?after={time}".format(
-            time=starting_unix_timestamp
+            time=yesterday_unix_timestamp
         ),
         headers=headers,
     )
@@ -54,4 +54,5 @@ if __name__ == "__main__":
         song_dict, columns=["song_name", "artist_name", "played_at", "time_stamp"]
     )
 
-    print(song_df)
+    if check_if_valid_data(song_df):
+        print("Data valid, proceed to Load stage")
