@@ -40,7 +40,7 @@ def check_timestamp(df: pd.DataFrame):
     return True
 
 
-def check_if_valid_data(df: pd.DataFrame) -> bool:
+def validate(df: pd.DataFrame) -> bool:
     # empty check
     if check_empty(df):
 
