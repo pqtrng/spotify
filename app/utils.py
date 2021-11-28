@@ -26,7 +26,7 @@ def check_nulls(df: pd.DataFrame):
 
 
 def check_timestamp(df: pd.DataFrame):
-    yesterday = datetime.datetime.now() - datetime.timedelta(days=0)
+    yesterday = datetime.datetime.now() - datetime.timedelta(days=1)
     yesterday = yesterday.replace(hour=0, minute=0, second=0, microsecond=0)
 
     time_stamps = df["time_stamp"].tolist()
