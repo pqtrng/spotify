@@ -1,11 +1,11 @@
-FROM python:3.9.7
+FROM puckel/docker-airflow:1.10.9
 
-WORKDIR /usr/src/app
+WORKDIR /usr/local/airflow/
 
-COPY requirements.txt ./
+COPY requirements.txt .
 
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install -r requirements.txt
 
-COPY . .
+COPY .env .
 
-CMD ["python", "app/main.py"]
+COPY app ./app
