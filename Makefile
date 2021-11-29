@@ -5,24 +5,19 @@ ifneq (,$(wildcard ./.env))
 endif
 
 clean:
-	docker rm $(CONTAINER_NAME) -vf || true
-	docker image rm $(CONTAINER_IMAGE) -f || true
-	docker image ls
 
 down:
-	docker-compose -f docker-compose.yml -f docker-compose.dev.yml down
+	docker-compose down
+	
 dev:
-	docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d --build
+	docker-compose up -d --build
 
-bash:
-	docker exec -it $(CONTAINER_NAME) bash
-
-log:
-	docker logs $(CONTAINER_NAME) -f
+bash: dev
+	docker exec -it airflow bash
 
 requirements:
 	pip install --upgrade pip
 	pip install -r requirements.txt
 
 start:
-	python app/main.py
+	python app/etl.py

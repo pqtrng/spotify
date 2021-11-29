@@ -3,8 +3,6 @@ import pandas as pd
 import sqlalchemy
 import sqlite3
 
-from sqlalchemy import engine
-
 QUERY = """
     CREATE TABLE IF NOT EXISTS tracks(
         song_name VARCHAR(200),
