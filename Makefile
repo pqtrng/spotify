@@ -4,8 +4,6 @@ ifneq (,$(wildcard ./.env))
     export
 endif
 
-clean:
-
 down:
 	docker-compose down
 	
